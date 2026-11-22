@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Olist Analytics Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --tint:#F8FAFC; --panel:#F3F3F4;
+  --ink:#000000; --ink-2:#0D162F; --muted:#868A97; --border:#E6E7EA;
+  --accent:#6056FF; --accent-deep:#4B40D6; --teal:#0E9384; --ink-dark:#1A192B;
+  --grad:radial-gradient(circle, rgb(96,86,255), rgb(59,50,249));
+  --card-shadow:rgba(13,22,47,.06) 0 1px 2px 0, rgba(13,22,47,.14) 0 6px 18px -4px, rgba(255,255,255,.9) 0 1px 0 0 inset;
+  --soft-shadow:rgba(255,255,255,.8) 0 1px 0 0 inset, rgba(13,22,47,.07) 0 2px 8px 0;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1300px;margin:0 auto;padding:0 40px}
+.mock-badge{position:fixed;left:16px;bottom:16px;z-index:50;background:var(--ink-dark);color:#fff;font:500 12px/1 Inter,system-ui,sans-serif;padding:8px 12px;border-radius:9999px;opacity:.85}
+
+/* ---------- nav ---------- */
+nav{position:sticky;top:0;z-index:20;height:65px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:rgba(255,255,255,.72);border-bottom:1px solid transparent;transition:border-color .2s var(--ease)}
+nav.scrolled{border-bottom-color:var(--border)}
+nav .wrap{height:100%;display:flex;align-items:center;gap:32px}
+.brand{display:flex;align-items:center;gap:10px;font:500 17px/1 Sora,Inter,system-ui,sans-serif;letter-spacing:-.4px;color:var(--ink-dark)}
+.brand i{width:22px;height:22px;border-radius:50%;background:var(--grad);display:block}
+.nav-links{display:flex;gap:24px;font-size:14px;color:var(--ink-2)}
+.nav-links a{opacity:.8;transition:opacity .15s var(--ease)}
+.nav-links a:hover{opacity:1}
+.nav-actions{margin-left:auto;display:flex;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:10px 20px;font:500 14px/1 Inter,system-ui,sans-serif;border-radius:9999px;cursor:pointer;border:0;transition:box-shadow .15s var(--ease),background .15s var(--ease)}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:rgba(59,50,249,.25) 0 1.6px 6.4px 0}
+.btn-primary:hover{box-shadow:rgba(59,50,249,.35) 0 3.2px 9.6px 0}
+.btn-nav{border-radius:4.8px}
+.btn-outline{background:transparent;color:var(--ink-2);border:1px solid var(--border);border-radius:4.8px}
+.btn-outline:hover{background:#F9FAFB}
+.btn-ghost{background:transparent;color:#374151;height:38px;padding:8px 16px;border-radius:6px}
+.btn-ghost:hover{background:#F9FAFB}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;padding:56px 0 64px}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(40% 55% at 0% 0%, rgba(138,105,255,.22) 0%, rgba(138,105,255,0) 62%),
+  radial-gradient(38% 50% at 100% 4%, rgba(109,74,255,.20) 0%, rgba(109,74,255,0) 62%),
+  radial-gradient(36% 45% at 96% 100%, rgba(138,105,255,.16) 0%, rgba(138,105,255,0) 60%),
+  radial-gradient(36% 45% at 4% 100%, rgba(199,207,255,.35) 0%, rgba(199,207,255,0) 65%)}
+.hero-top{display:grid;grid-template-columns:1.15fr 1fr;gap:80px;align-items:end}
+.eyebrow{font:500 13px/1.4 Inter,system-ui,sans-serif;color:var(--muted);letter-spacing:.2px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--teal)}
+h1{font:400 48px/1.2 Sora,Inter,system-ui,sans-serif;letter-spacing:-2.4px;margin:0;color:var(--ink-dark)}
+h2{font:400 36px/1.35 Sora,Inter,system-ui,sans-serif;letter-spacing:-.9px;margin:0;color:var(--ink-dark)}
+.lede{color:var(--ink-2);opacity:.78;margin:0 0 24px;max-width:520px}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap}
+
+/* metric strip */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px}
+.metric{background:rgba(255,255,255,.75);border:1px solid var(--border);border-radius:12px;padding:20px 20px 0;box-shadow:var(--soft-shadow);overflow:hidden;display:flex;flex-direction:column}
+.metric .label{font:500 13px/1.4 Inter,system-ui,sans-serif;color:var(--muted)}
+.metric .value{font:400 36px/1.15 Sora,Inter,system-ui,sans-serif;letter-spacing:-1.4px;color:var(--ink);margin:6px 0 4px;font-variant-numeric:tabular-nums}
+.metric .delta{font:500 13px/1.4 Inter,system-ui,sans-serif;color:var(--muted)}
+.delta.good{color:var(--teal)} .delta.bad{color:var(--ink-2)}
+.metric svg{display:block;margin:14px -20px 0;width:calc(100% + 40px);height:44px}
+
+/* ---------- insight cards ---------- */
+section{padding:64px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:28px;flex-wrap:wrap}
+.section-head p{margin:6px 0 0;color:var(--muted);max-width:560px}
+.insights{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.icard{background:var(--panel);border-radius:12px;padding:24px}
+.icard .ico{width:36px;height:36px;border-radius:8px;background:#fff;display:grid;place-items:center;box-shadow:var(--soft-shadow);margin-bottom:18px}
+.icard .big{font:400 32px/1.1 Sora,Inter,system-ui,sans-serif;letter-spacing:-1.2px;color:var(--ink-dark)}
+.icard h3{font:500 20px/1.4 Inter,system-ui,sans-serif;letter-spacing:-.5px;margin:10px 0 6px;color:var(--ink)}
+.icard p{margin:0;color:var(--muted);font-size:15px}
+
+/* ---------- tabs + cards ---------- */
+.pills{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--border);border-radius:9999px;background:#fff;box-shadow:var(--soft-shadow)}
+.pills button{border:0;background:transparent;font:500 14px/1 Inter,system-ui,sans-serif;color:var(--ink-2);padding:10px 16px;border-radius:9999px;cursor:pointer;transition:background .15s var(--ease),color .15s var(--ease)}
+.pills button:hover{background:#F9FAFB}
+.pills button[aria-selected=true]{background:var(--panel);color:var(--ink)}
+.panel{display:none} .panel.on{display:block;animation:fade .3s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.grid-2{display:grid;grid-template-columns:1.6fr 1fr;gap:20px}
+.grid-2.even{grid-template-columns:1fr 1fr}
+.card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;box-shadow:var(--card-shadow);min-width:0}
+.card h4{font:500 16px/1.4 Inter,system-ui,sans-serif;letter-spacing:-.3px;margin:0;color:var(--ink)}
+.card .sub{font-size:13px;color:var(--muted);margin:2px 0 16px}
+.card svg{width:100%;display:block}
+.callout{display:flex;gap:28px;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
+.callout div{font-size:13px;color:var(--muted)}
+.callout b{display:block;font:400 26px/1.2 Sora,Inter,system-ui,sans-serif;letter-spacing:-.8px;color:var(--ink-dark)}
+.legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin:-6px 0 10px}
+.legend span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;background:var(--c)}
+text{font-family:Inter,sans-serif}
+
+/* heatmap + table */
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+.heat td,.heat th{padding:0;text-align:center}
+.heat th{font:500 12px/1 Inter,system-ui,sans-serif;color:var(--muted);padding:0 0 8px}
+.heat th.l{text-align:left;padding-right:10px}
+.heat td.l{text-align:left;color:var(--ink-2);padding-right:10px;white-space:nowrap;font-size:12px}
+.heat td.c{height:24px;min-width:52px;border:2px solid #fff;border-radius:4px;font-size:11px;color:var(--ink-2)}
+.data th{font:500 12px/1.2 Inter,system-ui,sans-serif;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);white-space:nowrap}
+.data td{padding:12px;border-bottom:1px solid var(--border);color:var(--ink-2);white-space:nowrap}
+.data tr:last-child td{border-bottom:0}
+.data tbody tr{transition:background .15s var(--ease)}
+.data tbody tr:hover{background:var(--tint)}
+.data .num{text-align:right}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:9999px;background:var(--panel);font:500 12px/1.4 Inter,system-ui,sans-serif;color:var(--ink-2)}
+.chip.top::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.ok{color:var(--teal);font-weight:500}
+.sid{color:var(--muted)}
+
+/* ---------- process + flow ---------- */
+.process{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:20px}
+.stage{border:1px solid var(--border);border-radius:16px;padding:24px;background:#fff}
+.stage.first{border-color:transparent;background:linear-gradient(160deg,rgb(230,230,251) 0%,rgb(226,227,250) 50%,rgb(223,226,250) 100%)}
+.checks{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:28px}
+.checks span{display:inline-flex;align-items:center;gap:6px;padding:5px 12px 5px 8px;border-radius:9999px;background:rgba(255,255,255,.85);border:1px solid var(--border);font:500 12px/1.3 Inter,system-ui,sans-serif;color:var(--ink-2)}
+.checks span::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--teal) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M4 7.2l2 2 4-4.4' fill='none' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.stage .wk{font:500 12px/1 Inter,system-ui,sans-serif;color:var(--muted);letter-spacing:.3px;text-transform:uppercase}
+.stage h3{font:500 20px/1.4 Inter,system-ui,sans-serif;letter-spacing:-.5px;margin:8px 0 6px}
+.stage p{margin:0;color:var(--muted);font-size:15px}
+.flow{margin-top:20px;border-radius:16px;padding:28px;background:linear-gradient(160deg,rgb(230,230,251) 0%,rgb(226,227,250) 50%,rgb(223,226,250) 100%);position:relative}
+.flow svg{width:100%;height:auto;display:block}
+.node rect{fill:#fff;stroke:var(--border)}
+.node text{font:500 12px Inter,system-ui,sans-serif;fill:var(--ink-2)}
+.node .k{font:500 10px Inter,system-ui,sans-serif;fill:var(--muted);letter-spacing:.4px}
+.edge{fill:none;stroke:var(--accent);stroke-width:1.4;stroke-dasharray:4 4;opacity:.75;animation:dash 1.2s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-16}}
+.flow .toggle{position:absolute;right:20px;bottom:20px;display:flex;gap:2px;padding:3px;background:rgba(255,255,255,.75);backdrop-filter:blur(10px);border-radius:9999px;box-shadow:var(--soft-shadow);font:500 12px/1 Inter,system-ui,sans-serif}
+.flow .toggle span{padding:8px 12px;border-radius:9999px;color:var(--muted)}
+.flow .toggle span.on{background:#fff;color:var(--ink)}
+
+footer{border-top:1px solid var(--border);padding:40px 0 56px;color:var(--muted);font-size:14px}
+footer .wrap{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+footer h5{font:500 13px/1 Inter,system-ui,sans-serif;color:var(--ink-2);margin:4px 0 14px}
+footer a{display:block;margin-bottom:8px;transition:color .15s var(--ease)}
+footer a:hover{color:var(--ink-2)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1000px){
+  .hero-top,.grid-2,.grid-2.even{grid-template-columns:1fr;gap:24px}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .insights,.process{grid-template-columns:1fr}
+  .nav-links{display:none}
+  footer .wrap{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  h1{font-size:34px;letter-spacing:-1.4px}
+  h2{font-size:28px;letter-spacing:-.6px}
+  .metrics{gap:12px}
+  .metric{padding:16px 16px 0}
+  .metric .value{font-size:26px;letter-spacing:-.8px}
+  .metric svg{margin:10px -16px 0;width:calc(100% + 32px)}
+  .btn-outline{display:none}
+  .pills{display:flex;overflow-x:auto;max-width:100%;scrollbar-width:none}
+  .pills::-webkit-scrollbar{display:none}
+  .card svg{height:auto !important}
+  .pills button{white-space:nowrap;padding:10px 12px}
+  .card{padding:18px}
+  .flow{padding:16px;overflow-x:auto}
+  .flow svg{min-width:860px}
+  .flow .toggle{position:static;margin-top:12px;width:max-content}
+}
+</style>
+</head>
+<body>
+<div class="mock-badge">Mockup · real data</div>
+
+<nav id="nav"><div class="wrap">
+  <a class="brand" href="#"><i></i>Olist Analytics</a>
+  <div class="nav-links"><a href="#overview">Overview</a><a href="#analysis">Analysis</a><a href="#built">How it's built</a></div>
+  <div class="nav-actions">
+    <a class="btn btn-outline" href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce">Dataset</a>
+    <a class="btn btn-primary btn-nav" href="https://github.com/dhia-sa/ecommerce-analytics-dbt">View on GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="overview"><div class="wrap">
+  <div class="hero-top">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>Brazilian marketplace · Jan 2017 – Aug 2018</div>
+      <h1>98k marketplace orders, modeled end to end.</h1>
+    </div>
+    <div>
+      <p class="lede">Raw Olist CSVs turned into a tested dbt star schema on DuckDB. Every number on this page comes from those marts, the same models that pass 66 data tests in CI.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#analysis">Explore the analysis</a>
+        <a class="btn btn-ghost" href="#built">How it's built →</a>
+      </div>
+    </div>
+  </div>
+  <div class="metrics" id="metrics"></div>
+</div></header>
+
+<section style="padding-top:8px"><div class="wrap">
+  <div class="insights" id="insights"></div>
+</div></section>
+
+<section id="analysis" style="background:var(--tint);border-top:1px solid var(--border);border-bottom:1px solid var(--border)"><div class="wrap">
+  <div class="section-head">
+    <div><h2>Analysis</h2><p>Four views on the analytics marts. Switch between them below.</p></div>
+    <div class="pills" role="tablist" id="tabs">
+      <button role="tab" aria-selected="true" data-p="sales">Sales</button>
+      <button role="tab" aria-selected="false" data-p="delivery">Delivery & reviews</button>
+      <button role="tab" aria-selected="false" data-p="customers">Customers</button>
+      <button role="tab" aria-selected="false" data-p="sellers">Sellers</button>
+    </div>
+  </div>
+
+  <div class="panel on" id="p-sales"><div class="grid-2">
+    <div class="card"><h4>Monthly GMV</h4><div class="sub">Product value, excluding freight · BRL</div><div id="ch-gmv"></div></div>
+    <div class="card"><h4>Top categories</h4><div class="sub">GMV, Jan 2017 – Aug 2018</div><div id="ch-cat"></div></div>
+  </div></div>
+
+  <div class="panel" id="p-delivery"><div class="grid-2">
+    <div class="card"><h4>Late delivery rate by state</h4><div class="sub">Share of delivered orders that arrived after the estimated date</div><div id="ch-state"></div></div>
+    <div class="card"><h4>Review score: late vs on time</h4><div class="sub">Share of orders at each star rating</div>
+      <div class="legend"><span style="--c:var(--ink-dark)">On time</span><span style="--c:var(--accent)">Late</span></div>
+      <div id="ch-review"></div><div class="callout" id="review-callout"></div></div>
+  </div></div>
+
+  <div class="panel" id="p-customers"><div class="grid-2 even">
+    <div class="card"><h4>Customers by RFM segment</h4><div class="sub">Recency, frequency and monetary scores</div><div id="ch-rfm"></div><div class="callout" id="rfm-callout"></div></div>
+    <div class="card"><h4>Cohort retention</h4><div class="sub">Share of each monthly cohort ordering again, months 1–6</div><div class="scroll-x" id="ch-cohort"></div></div>
+  </div></div>
+
+  <div class="panel" id="p-sellers"><div class="card">
+    <h4>Top sellers by GMV</h4><div class="sub">Top 8 of 3,029 sellers · full table in the live app</div>
+    <div class="scroll-x"><table class="data" id="tbl-sellers"></table></div>
+  </div></div>
+</div></section>
+
+<section id="built"><div class="wrap">
+  <div class="section-head"><div><h2>How it's built</h2><p>Three dbt layers, each with its own job, from raw CSV to the numbers above.</p></div></div>
+  <div class="process">
+    <div class="stage first">
+      <div class="checks"><span>Typed casts</span><span>Zip codes kept</span><span>1:1 with source</span></div>
+      <div class="wk">Layer 01</div><h3>Staging · 8 views</h3><p>Every raw column is read as text and cast explicitly, so nothing is lost on load.</p>
+    </div>
+    <div class="stage">
+      <div class="checks"><span>Deduped reviews</span><span>Pivoted payments</span></div>
+      <div class="wk">Layer 02</div><h3>Intermediate · 3 views</h3><p>One review and one payment row per order, plus items enriched with category and seller.</p>
+    </div>
+    <div class="stage">
+      <div class="checks"><span>66 tests</span><span>Star schema</span></div>
+      <div class="wk">Layer 03</div><h3>Marts · 11 tables</h3><p>Facts and dimensions, plus RFM, cohort, delivery, seller and sales marts.</p>
+    </div>
+  </div>
+  <div class="flow"><svg id="flow" viewBox="0 0 1180 250" role="img" aria-label="Data flow from raw CSVs to dashboard"></svg>
+</div>
+</div></section>
+
+<footer><div class="wrap">
+  <div><div class="brand" style="margin-bottom:12px"><i></i>Olist Analytics</div>An analytics engineering portfolio project by dhia-sa.<br>dbt · DuckDB · Streamlit</div>
+  <div><h5>Project</h5><a href="https://github.com/dhia-sa/ecommerce-analytics-dbt">GitHub repo</a><a href="https://github.com/dhia-sa/ecommerce-analytics-dbt#readme">README</a><a href="https://github.com/dhia-sa/ecommerce-analytics-dbt/actions">CI runs</a></div>
+  <div><h5>Data</h5><a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce">Olist on Kaggle</a><a href="#overview">Analysis window</a></div>
+  <div><h5>Stack</h5><a href="https://www.getdbt.com/">dbt</a><a href="https://duckdb.org/">DuckDB</a><a href="https://streamlit.io/">Streamlit</a></div>
+</div></footer>
+
+<script>
+const D = {"monthly": [{"m": "2017-01", "orders": 787, "gmv": 120098.27, "aov": 152.6026, "late_rate": 0.0293}, {"m": "2017-02", "orders": 1718, "gmv": 244959.35, "aov": 142.584, "late_rate": 0.0296}, {"m": "2017-03", "orders": 2617, "gmv": 368341.32, "aov": 140.7495, "late_rate": 0.0456}, {"m": "2017-04", "orders": 2377, "gmv": 353842.98, "aov": 148.8612, "late_rate": 0.0656}, {"m": "2017-05", "orders": 3640, "gmv": 503159.19, "aov": 138.2305, "late_rate": 0.0299}, {"m": "2017-06", "orders": 3205, "gmv": 429916.61, "aov": 134.1393, "late_rate": 0.0303}, {"m": "2017-07", "orders": 3946, "gmv": 492287.3, "aov": 124.756, "late_rate": 0.0279}, {"m": "2017-08", "orders": 4272, "gmv": 568245.79, "aov": 133.0163, "late_rate": 0.0291}, {"m": "2017-09", "orders": 4227, "gmv": 621415.91, "aov": 147.0111, "late_rate": 0.0439}, {"m": "2017-10", "orders": 4547, "gmv": 660179.62, "aov": 145.1902, "late_rate": 0.0418}, {"m": "2017-11", "orders": 7423, "gmv": 1003862.14, "aov": 135.2732, "late_rate": 0.124}, {"m": "2017-12", "orders": 5620, "gmv": 742183.79, "aov": 132.1082, "late_rate": 0.0746}, {"m": "2018-01", "orders": 7187, "gmv": 945456.29, "aov": 131.5509, "late_rate": 0.057}, {"m": "2018-02", "orders": 6625, "gmv": 837895.43, "aov": 126.4939, "late_rate": 0.1414}, {"m": "2018-03", "orders": 7168, "gmv": 981051.06, "aov": 136.8654, "late_rate": 0.1896}, {"m": "2018-04", "orders": 6919, "gmv": 993592.98, "aov": 143.6036, "late_rate": 0.045}, {"m": "2018-05", "orders": 6833, "gmv": 992871.75, "aov": 145.3054, "late_rate": 0.0656}, {"m": "2018-06", "orders": 6145, "gmv": 863265.53, "aov": 140.4826, "late_rate": 0.0116}, {"m": "2018-07", "orders": 6233, "gmv": 878044.27, "aov": 140.8703, "late_rate": 0.0338}, {"m": "2018-08", "orders": 6421, "gmv": 848860.1, "aov": 132.2006, "late_rate": 0.0619}], "kpi": {"orders": 97910, "gmv": 13449529.68, "aov": 137.3733, "late_rate": 0.0679, "avg_review": 4.0886}, "yoy": [{"y": 2017, "orders": 22562, "gmv": 3080850.81, "aov": 136.5504, "late_rate": 0.035}, {"y": 2018, "orders": 53531, "gmv": 7341037.41, "aov": 137.1388, "late_rate": 0.0773}], "top_cat": [{"cat": "health_beauty", "gmv": 1251145.54, "orders": 8757}, {"cat": "watches_gifts", "gmv": 1194824.97, "orders": 5599}, {"cat": "bed_bath_table", "gmv": 1035485.07, "orders": 9394}, {"cat": "sports_leisure", "gmv": 977728.77, "orders": 7656}, {"cat": "computers_accessories", "gmv": 902922.7, "orders": 6636}, {"cat": "furniture_decor", "gmv": 721584.27, "orders": 6373}, {"cat": "housewares", "gmv": 625538.73, "orders": 5838}, {"cat": "cool_stuff", "gmv": 619724.39, "orders": 3609}, {"cat": "auto", "gmv": 585177.48, "orders": 3863}, {"cat": "garden_tools", "gmv": 479650.06, "orders": 3500}], "late_state": [{"st": "AL", "late_rate": 0.2146, "n": 396}, {"st": "MA", "late_rate": 0.1753, "n": 713}, {"st": "SE", "late_rate": 0.1536, "n": 332}, {"st": "PI", "late_rate": 0.1389, "n": 475}, {"st": "CE", "late_rate": 0.1383, "n": 1273}, {"st": "RR", "late_rate": 0.125, "n": 40}, {"st": "BA", "late_rate": 0.1217, "n": 3253}, {"st": "RJ", "late_rate": 0.1214, "n": 12310}, {"st": "PA", "late_rate": 0.1125, "n": 942}, {"st": "ES", "late_rate": 0.1074, "n": 1992}, {"st": "PB", "late_rate": 0.1047, "n": 516}, {"st": "TO", "late_rate": 0.0985, "n": 274}, {"st": "MS", "late_rate": 0.097, "n": 701}, {"st": "PE", "late_rate": 0.0964, "n": 1587}, {"st": "RN", "late_rate": 0.0936, "n": 470}, {"st": "SC", "late_rate": 0.0823, "n": 3537}, {"st": "GO", "late_rate": 0.0656, "n": 1950}, {"st": "RS", "late_rate": 0.061, "n": 5327}, {"st": "MT", "late_rate": 0.0599, "n": 885}, {"st": "DF", "late_rate": 0.0569, "n": 2074}, {"st": "MG", "late_rate": 0.0459, "n": 11319}, {"st": "SP", "late_rate": 0.045, "n": 40399}, {"st": "PR", "late_rate": 0.0406, "n": 4903}, {"st": "AC", "late_rate": 0.0375, "n": 80}, {"st": "AP", "late_rate": 0.0299, "n": 67}, {"st": "RO", "late_rate": 0.0288, "n": 243}, {"st": "AM", "late_rate": 0.0276, "n": 145}], "review": [{"d": "late", "s": 1, "n": 3431}, {"d": "late", "s": 2, "n": 552}, {"d": "late", "s": 3, "n": 695}, {"d": "late", "s": 4, "n": 649}, {"d": "late", "s": 5, "n": 1055}, {"d": "on_time", "s": 1, "n": 5924}, {"d": "on_time", "s": 2, "n": 2369}, {"d": "on_time", "s": 3, "n": 7222}, {"d": "on_time", "s": 4, "n": 18239}, {"d": "on_time", "s": 5, "n": 55694}], "review_avg": [{"d": "late", "a": 2.2706}, {"d": "on_time", "a": 4.2902}], "rfm": [{"seg": "Hibernating", "customers": 22897, "revenue": 1665410.94}, {"seg": "New / Promising", "customers": 22052, "revenue": 1611164.07}, {"seg": "Needs Attention", "customers": 18326, "revenue": 2788280.52}, {"seg": "Big Spenders - Recent", "customers": 14602, "revenue": 4423984.7}, {"seg": "At Risk - High Value", "customers": 13955, "revenue": 4308595.2}, {"seg": "Loyal", "customers": 1647, "revenue": 491131.4}, {"seg": "Champions", "customers": 1228, "revenue": 395139.91}], "cohort": [{"c": "2017-01", "k": 0, "r": 1.0, "n": 753}, {"c": "2017-01", "k": 1, "r": 0.004, "n": 753}, {"c": "2017-01", "k": 2, "r": 0.0027, "n": 753}, {"c": "2017-01", "k": 3, "r": 0.0013, "n": 753}, {"c": "2017-01", "k": 4, "r": 0.004, "n": 753}, {"c": "2017-01", "k": 5, "r": 0.0013, "n": 753}, {"c": "2017-01", "k": 6, "r": 0.004, "n": 753}, {"c": "2017-02", "k": 0, "r": 1.0, "n": 1690}, {"c": "2017-02", "k": 1, "r": 0.0024, "n": 1690}, {"c": "2017-02", "k": 2, "r": 0.003, "n": 1690}, {"c": "2017-02", "k": 3, "r": 0.0012, "n": 1690}, {"c": "2017-02", "k": 4, "r": 0.0041, "n": 1690}, {"c": "2017-02", "k": 5, "r": 0.0012, "n": 1690}, {"c": "2017-02", "k": 6, "r": 0.0024, "n": 1690}, {"c": "2017-03", "k": 0, "r": 1.0, "n": 2571}, {"c": "2017-03", "k": 1, "r": 0.0051, "n": 2571}, {"c": "2017-03", "k": 2, "r": 0.0035, "n": 2571}, {"c": "2017-03", "k": 3, "r": 0.0039, "n": 2571}, {"c": "2017-03", "k": 4, "r": 0.0035, "n": 2571}, {"c": "2017-03", "k": 5, "r": 0.0016, "n": 2571}, {"c": "2017-03", "k": 6, "r": 0.0016, "n": 2571}, {"c": "2017-04", "k": 0, "r": 1.0, "n": 2326}, {"c": "2017-04", "k": 1, "r": 0.006, "n": 2326}, {"c": "2017-04", "k": 2, "r": 0.0021, "n": 2326}, {"c": "2017-04", "k": 3, "r": 0.0017, "n": 2326}, {"c": "2017-04", "k": 4, "r": 0.003, "n": 2326}, {"c": "2017-04", "k": 5, "r": 0.0026, "n": 2326}, {"c": "2017-04", "k": 6, "r": 0.0034, "n": 2326}, {"c": "2017-05", "k": 0, "r": 1.0, "n": 3541}, {"c": "2017-05", "k": 1, "r": 0.0048, "n": 3541}, {"c": "2017-05", "k": 2, "r": 0.0048, "n": 3541}, {"c": "2017-05", "k": 3, "r": 0.004, "n": 3541}, {"c": "2017-05", "k": 4, "r": 0.0031, "n": 3541}, {"c": "2017-05", "k": 5, "r": 0.0034, "n": 3541}, {"c": "2017-05", "k": 6, "r": 0.0042, "n": 3541}, {"c": "2017-06", "k": 0, "r": 1.0, "n": 3102}, {"c": "2017-06", "k": 1, "r": 0.0045, "n": 3102}, {"c": "2017-06", "k": 2, "r": 0.0035, "n": 3102}, {"c": "2017-06", "k": 3, "r": 0.0039, "n": 3102}, {"c": "2017-06", "k": 4, "r": 0.0026, "n": 3102}, {"c": "2017-06", "k": 5, "r": 0.0039, "n": 3102}, {"c": "2017-06", "k": 6, "r": 0.0035, "n": 3102}, {"c": "2017-07", "k": 0, "r": 1.0, "n": 3823}, {"c": "2017-07", "k": 1, "r": 0.0052, "n": 3823}, {"c": "2017-07", "k": 2, "r": 0.0034, "n": 3823}, {"c": "2017-07", "k": 3, "r": 0.0024, "n": 3823}, {"c": "2017-07", "k": 4, "r": 0.0029, "n": 3823}, {"c": "2017-07", "k": 5, "r": 0.0021, "n": 3823}, {"c": "2017-07", "k": 6, "r": 0.0031, "n": 3823}, {"c": "2017-08", "k": 0, "r": 1.0, "n": 4130}, {"c": "2017-08", "k": 1, "r": 0.0068, "n": 4130}, {"c": "2017-08", "k": 2, "r": 0.0034, "n": 4130}, {"c": "2017-08", "k": 3, "r": 0.0027, "n": 4130}, {"c": "2017-08", "k": 4, "r": 0.0036, "n": 4130}, {"c": "2017-08", "k": 5, "r": 0.0053, "n": 4130}, {"c": "2017-08", "k": 6, "r": 0.0029, "n": 4130}, {"c": "2017-09", "k": 0, "r": 1.0, "n": 4076}, {"c": "2017-09", "k": 1, "r": 0.0069, "n": 4076}, {"c": "2017-09", "k": 2, "r": 0.0054, "n": 4076}, {"c": "2017-09", "k": 3, "r": 0.0029, "n": 4076}, {"c": "2017-09", "k": 4, "r": 0.0044, "n": 4076}, {"c": "2017-09", "k": 5, "r": 0.0022, "n": 4076}, {"c": "2017-09", "k": 6, "r": 0.0022, "n": 4076}, {"c": "2017-10", "k": 0, "r": 1.0, "n": 4392}, {"c": "2017-10", "k": 1, "r": 0.0071, "n": 4392}, {"c": "2017-10", "k": 2, "r": 0.0025, "n": 4392}, {"c": "2017-10", "k": 3, "r": 0.0009, "n": 4392}, {"c": "2017-10", "k": 4, "r": 0.0023, "n": 4392}, {"c": "2017-10", "k": 5, "r": 0.002, "n": 4392}, {"c": "2017-10", "k": 6, "r": 0.002, "n": 4392}, {"c": "2017-11", "k": 0, "r": 1.0, "n": 7191}, {"c": "2017-11", "k": 1, "r": 0.0056, "n": 7191}, {"c": "2017-11", "k": 2, "r": 0.0039, "n": 7191}, {"c": "2017-11", "k": 3, "r": 0.0017, "n": 7191}, {"c": "2017-11", "k": 4, "r": 0.0019, "n": 7191}, {"c": "2017-11", "k": 5, "r": 0.0018, "n": 7191}, {"c": "2017-11", "k": 6, "r": 0.0011, "n": 7191}, {"c": "2017-12", "k": 0, "r": 1.0, "n": 5439}, {"c": "2017-12", "k": 1, "r": 0.0022, "n": 5439}, {"c": "2017-12", "k": 2, "r": 0.0028, "n": 5439}, {"c": "2017-12", "k": 3, "r": 0.0035, "n": 5439}, {"c": "2017-12", "k": 4, "r": 0.0026, "n": 5439}, {"c": "2017-12", "k": 5, "r": 0.002, "n": 5439}, {"c": "2017-12", "k": 6, "r": 0.0017, "n": 5439}, {"c": "2018-01", "k": 0, "r": 1.0, "n": 6952}, {"c": "2018-01", "k": 1, "r": 0.0033, "n": 6952}, {"c": "2018-01", "k": 2, "r": 0.0036, "n": 6952}, {"c": "2018-01", "k": 3, "r": 0.0029, "n": 6952}, {"c": "2018-01", "k": 4, "r": 0.0029, "n": 6952}, {"c": "2018-01", "k": 5, "r": 0.0016, "n": 6952}, {"c": "2018-01", "k": 6, "r": 0.0017, "n": 6952}, {"c": "2018-02", "k": 0, "r": 1.0, "n": 6357}, {"c": "2018-02", "k": 1, "r": 0.0036, "n": 6357}, {"c": "2018-02", "k": 2, "r": 0.0039, "n": 6357}, {"c": "2018-02", "k": 3, "r": 0.003, "n": 6357}, {"c": "2018-02", "k": 4, "r": 0.0027, "n": 6357}, {"c": "2018-02", "k": 5, "r": 0.0022, "n": 6357}, {"c": "2018-02", "k": 6, "r": 0.002, "n": 6357}, {"c": "2018-03", "k": 0, "r": 1.0, "n": 6932}, {"c": "2018-03", "k": 1, "r": 0.004, "n": 6932}, {"c": "2018-03", "k": 2, "r": 0.003, "n": 6932}, {"c": "2018-03", "k": 3, "r": 0.0029, "n": 6932}, {"c": "2018-03", "k": 4, "r": 0.0013, "n": 6932}, {"c": "2018-03", "k": 5, "r": 0.0012, "n": 6932}, {"c": "2018-04", "k": 0, "r": 1.0, "n": 6698}, {"c": "2018-04", "k": 1, "r": 0.0058, "n": 6698}, {"c": "2018-04", "k": 2, "r": 0.0031, "n": 6698}, {"c": "2018-04", "k": 3, "r": 0.0024, "n": 6698}, {"c": "2018-04", "k": 4, "r": 0.0013, "n": 6698}, {"c": "2018-05", "k": 0, "r": 1.0, "n": 6588}, {"c": "2018-05", "k": 1, "r": 0.0052, "n": 6588}, {"c": "2018-05", "k": 2, "r": 0.0026, "n": 6588}, {"c": "2018-05", "k": 3, "r": 0.002, "n": 6588}, {"c": "2018-06", "k": 0, "r": 1.0, "n": 5921}, {"c": "2018-06", "k": 1, "r": 0.0042, "n": 5921}, {"c": "2018-06", "k": 2, "r": 0.0027, "n": 5921}, {"c": "2018-07", "k": 0, "r": 1.0, "n": 6016}, {"c": "2018-07", "k": 1, "r": 0.0052, "n": 6016}, {"c": "2018-08", "k": 0, "r": 1.0, "n": 6209}], "sellers": [{"seller_id": "4869f7a5dfa277a7dca6462dcf3b52b2", "seller_state": "SP", "top_category": "watches_gifts", "orders": 1131, "gmv": 229237.63, "avg_delivery_days": 14.9947, "late_rate": 0.105, "avg_review_score": 4.1362, "seller_tier": "Top"}, {"seller_id": "53243585a1d6dc2643021fd1853d8905", "seller_state": "BA", "top_category": "telephony", "orders": 358, "gmv": 222776.05, "avg_delivery_days": 13.3362, "late_rate": 0.0345, "avg_review_score": 4.132, "seller_tier": "Top"}, {"seller_id": "4a3ca9315b744ce9f8e9374361493884", "seller_state": "SP", "top_category": "bed_bath_table", "orders": 1804, "gmv": 200326.12, "avg_delivery_days": 14.4328, "late_rate": 0.0971, "avg_review_score": 3.8289, "seller_tier": "Top"}, {"seller_id": "fa1c13f2614d7b5c4749cbc52fecda94", "seller_state": "SP", "top_category": "watches_gifts", "orders": 584, "gmv": 192842.13, "avg_delivery_days": 13.308, "late_rate": 0.0917, "avg_review_score": 4.3431, "seller_tier": "Top"}, {"seller_id": "7c67e1448b00f6e969d365cea6b010ab", "seller_state": "SP", "top_category": "office_furniture", "orders": 982, "gmv": 187923.89, "avg_delivery_days": 22.2909, "late_rate": 0.0915, "avg_review_score": 3.4887, "seller_tier": "Top"}, {"seller_id": "7e93a43ef30c4f03f38b393420bc753a", "seller_state": "SP", "top_category": "watches_gifts", "orders": 331, "gmv": 171184.88, "avg_delivery_days": 11.261, "late_rate": 0.0472, "avg_review_score": 4.2455, "seller_tier": "Top"}, {"seller_id": "da8622b14eb17ae2831f4ac5b9dab84a", "seller_state": "SP", "top_category": "bed_bath_table", "orders": 1314, "gmv": 160236.57, "avg_delivery_days": 11.1266, "late_rate": 0.0664, "avg_review_score": 4.1758, "seller_tier": "Top"}, {"seller_id": "7a67c85e85bb2ce8582c35f2203ad736", "seller_state": "SP", "top_category": "cool_stuff", "orders": 1159, "gmv": 141715.54, "avg_delivery_days": 11.1668, "late_rate": 0.0524, "avg_review_score": 4.2461, "seller_tier": "Top"}], "repeat": {"r": 0.0}};
+const NS='http://www.w3.org/2000/svg';
+const brl = v => v>=1e6 ? 'R$ '+(v/1e6).toFixed(2)+'M' : v>=1e3 ? 'R$ '+(v/1e3).toFixed(0)+'k' : 'R$ '+v.toFixed(0);
+const pct = (v,d=1) => (v*100).toFixed(d)+'%';
+const CAT = {health_beauty:'Health & beauty',watches_gifts:'Watches & gifts',bed_bath_table:'Bed, bath & table',sports_leisure:'Sports & leisure',
+  computers_accessories:'Computers & accessories',furniture_decor:'Furniture & decor',housewares:'Housewares',cool_stuff:'Cool stuff',
+  auto:'Auto',garden_tools:'Garden tools',office_furniture:'Office furniture',telephony:'Telephony'};
+const nice = s => CAT[s] ?? (s.charAt(0).toUpperCase()+s.slice(1).replace(/_/g,' '));
+const mon = m => { const [y,mm]=m.split('-'); return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+mm-1]+' '+y.slice(2); };
+let gid=0;
+function svg(w,h){const s=document.createElementNS(NS,'svg');s.setAttribute('viewBox',`0 0 ${w} ${h}`);s.setAttribute('preserveAspectRatio','none');return s;}
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;parent&&parent.appendChild(e);return e;}
+function gradDef(s,stops,vertical){const id='g'+(++gid);const d=el('defs',{},s);const g=el('linearGradient',{id,x1:0,y1:0,x2:vertical?0:1,y2:vertical?1:0},d);stops.forEach(([o,c,a])=>el('stop',{offset:o,'stop-color':c,'stop-opacity':a??1},g));return `url(#${id})`;}
+
+/* ---- metrics ---- */
+const k=D.kpi, y17=D.yoy[0], y18=D.yoy[1], M=D.monthly;
+const metrics=[
+  {label:'GMV',value:brl(k.gmv),series:M.map(r=>r.gmv),delta:`▲ ${pct(y18.gmv/y17.gmv-1,0)} vs Jan–Aug 2017`,cls:'good'},
+  {label:'Orders',value:k.orders.toLocaleString('en-US'),series:M.map(r=>r.orders),delta:`▲ ${pct(y18.orders/y17.orders-1,0)} vs Jan–Aug 2017`,cls:'good'},
+  {label:'Average order value',value:'R$ '+k.aov.toFixed(0),series:M.map(r=>r.aov),delta:`Flat · R$ ${y17.aov.toFixed(0)} → R$ ${y18.aov.toFixed(0)}`,cls:''},
+  {label:'Late delivery rate',value:pct(k.late_rate),series:M.map(r=>r.late_rate),delta:`▲ ${((y18.late_rate-y17.late_rate)*100).toFixed(1)} pts vs Jan–Aug 2017`,cls:'bad'},
+];
+const mWrap=document.getElementById('metrics');
+metrics.forEach(m=>{
+  const c=document.createElement('div');c.className='metric';
+  c.innerHTML=`<div class="label">${m.label}</div><div class="value">${m.value}</div><div class="delta ${m.cls}">${m.delta}</div>`;
+  const W=300,H=44,s=svg(W,H),mx=Math.max(...m.series),mn=Math.min(...m.series);
+  const pts=m.series.map((v,i)=>[i/(m.series.length-1)*W, H-4-(v-mn)/(mx-mn||1)*(H-14)]);
+  const line='M'+pts.map(p=>p.join(',')).join('L');
+  el('path',{d:line+`L${W},${H}L0,${H}Z`,fill:gradDef(s,[[0,'#6056FF',.18],[1,'#6056FF',0]],true)},s);
+  el('path',{d:line,fill:'none',stroke:gradDef(s,[[0,'#A49EFF'],[1,'#3B32F9']]),'stroke-width':1.6,'vector-effect':'non-scaling-stroke'},s);
+  c.appendChild(s);mWrap.appendChild(c);
+});
+
+/* ---- insights ---- */
+const ra=Object.fromEntries(D.review_avg.map(r=>[r.d,r.a]));
+const ico=p=>`<div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0D162F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${p}</svg></div>`;
+document.getElementById('insights').innerHTML=[
+  {i:'<path d="M3 7h11v8H3zM14 10h4l3 3v2h-7"/><circle cx="7" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/>',big:`${ra.late.toFixed(1)}★ vs ${ra.on_time.toFixed(1)}★`,h:'Late delivery costs two stars',p:`Late orders average ${ra.late.toFixed(1)} stars against ${ra.on_time.toFixed(1)} for on-time ones. ${pct(k.late_rate)} of delivered orders arrive late.`},
+  {i:'<path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 013-3h15M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 01-3 3H3"/>',big:'3.0%',h:'Almost no repeat buyers',p:'Only 3% of customers ever order twice, and month-1 cohort retention stays under 0.5%. Growth is all acquisition.'},
+  {i:'<path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-6"/>',big:brl(D.top_cat[0].gmv),h:nice(D.top_cat[0].cat)+' leads GMV',p:`Followed by ${nice(D.top_cat[1].cat).toLowerCase()} and ${nice(D.top_cat[2].cat).toLowerCase()}. The top 10 categories make up about 60% of GMV.`},
+].map(c=>`<div class="icard">${ico(c.i)}<div class="big">${c.big}</div><h3>${c.h}</h3><p>${c.p}</p></div>`).join('');
+
+/* ---- charts ---- */
+function areaChart(id,labels,vals){
+  const W=720,H=380,L=46,B=26,T=10,s=svg(W,H);s.style.height='380px';s.setAttribute('preserveAspectRatio','xMidYMid meet');
+  const mx=Math.ceil(Math.max(...vals)/2e5)*2e5,x=i=>L+i/(vals.length-1)*(W-L-8),y=v=>T+(1-v/mx)*(H-T-B);
+  for(let g=0;g<=mx;g+=2e5){el('line',{x1:L,x2:W-8,y1:y(g),y2:y(g),stroke:'#E6E7EA'},s);el('text',{x:L-8,y:y(g)+4,'text-anchor':'end','font-size':11,fill:'#868A97'},s,g?(g/1e6).toFixed(1)+'M':'0');}
+  labels.forEach((l,i)=>{if(i%3===0)el('text',{x:x(i),y:H-6,'text-anchor':'middle','font-size':11,fill:'#868A97'},s,mon(l));});
+  const line='M'+vals.map((v,i)=>x(i)+','+y(v)).join('L');
+  el('path',{d:line+`L${x(vals.length-1)},${y(0)}L${x(0)},${y(0)}Z`,fill:gradDef(s,[[0,'#6056FF',.22],[1,'#6056FF',0]],true)},s);
+  el('path',{d:line,fill:'none',stroke:'#6056FF','stroke-width':2.2,'stroke-linejoin':'round'},s);
+  vals.forEach((v,i)=>{const c=el('circle',{cx:x(i),cy:y(v),r:3,fill:'#fff',stroke:'#6056FF','stroke-width':1.6},s);el('title',{},c,`${mon(labels[i])}: ${brl(v)}`);});
+  document.getElementById(id).appendChild(s);
+}
+function hbars(id,items,{fmt,hi=1,label=x=>x.name}={}){
+  const box=document.getElementById(id),mx=Math.max(...items.map(i=>i.v));
+  box.innerHTML=items.map((it,i)=>`<div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;margin-bottom:12px;font-size:13px">
+    <span style="color:#0D162F;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${label(it)}</span><span style="color:#868A97;font-variant-numeric:tabular-nums">${fmt(it.v)}</span>
+    <span style="grid-column:1/-1;height:6px;border-radius:9999px;background:#F3F3F4;overflow:hidden"><span title="${label(it)}: ${fmt(it.v)}" style="display:block;height:100%;width:${it.v/mx*100}%;border-radius:9999px;background:${i<hi?'radial-gradient(circle,#6056FF,#3B32F9)':'#C9CBD3'}"></span></span></div>`).join('');
+}
+function vbars(id,items,{fmt,hiIf,h=260}){
+  const W=720,H=h,L=40,B=24,T=10,s=svg(W,H);s.style.height=h+'px';s.setAttribute('preserveAspectRatio','xMidYMid meet');
+  const mx=Math.max(...items.map(i=>i.v))*1.08,bw=(W-L)/items.length,y=v=>T+(1-v/mx)*(H-T-B);
+  [0,.05,.1,.15,.2].forEach(g=>{if(g>mx)return;el('line',{x1:L,x2:W,y1:y(g),y2:y(g),stroke:'#E6E7EA'},s);el('text',{x:L-8,y:y(g)+4,'text-anchor':'end','font-size':11,fill:'#868A97'},s,fmt(g));});
+  items.forEach((it,i)=>{const r=el('rect',{x:L+i*bw+bw*.18,y:y(it.v),width:bw*.64,height:y(0)-y(it.v),rx:3,fill:hiIf(it)?'#6056FF':'#C9CBD3'},s);el('title',{},r,`${it.name}: ${fmt(it.v)} of ${it.n.toLocaleString()} delivered`);
+    el('text',{x:L+i*bw+bw/2,y:H-6,'text-anchor':'middle','font-size':10.5,fill:'#868A97'},s,it.name);});
+  document.getElementById(id).appendChild(s);
+}
+function grouped(id){
+  const tot={late:0,on_time:0};D.review.forEach(r=>tot[r.d]+=r.n);
+  const share=(d,s)=>{const r=D.review.find(x=>x.d===d&&x.s===s);return r?r.n/tot[d]:0;};
+  const W=480,H=240,L=36,B=24,T=10,s=svg(W,H);s.style.height='240px';s.setAttribute('preserveAspectRatio','xMidYMid meet');
+  const mx=.7,y=v=>T+(1-v/mx)*(H-T-B),gw=(W-L)/5;
+  [0,.2,.4,.6].forEach(g=>{el('line',{x1:L,x2:W,y1:y(g),y2:y(g),stroke:'#E6E7EA'},s);el('text',{x:L-6,y:y(g)+4,'text-anchor':'end','font-size':11,fill:'#868A97'},s,pct(g,0));});
+  [1,2,3,4,5].forEach((st,i)=>{[['on_time','#1A192B'],['late','#6056FF']].forEach(([d,c],j)=>{const v=share(d,st),x=L+i*gw+gw*.2+j*gw*.31;
+    const r=el('rect',{x,y:y(v),width:gw*.28,height:y(0)-y(v),rx:3,fill:c},s);el('title',{},r,`${st}★ ${d==='late'?'late':'on time'}: ${pct(v)}`);});
+    el('text',{x:L+i*gw+gw/2,y:H-6,'text-anchor':'middle','font-size':11,fill:'#868A97'},s,st+'★');});
+  document.getElementById(id).appendChild(s);
+  document.getElementById('review-callout').innerHTML=`<div><b>${ra.on_time.toFixed(2)}★</b>on time</div><div><b>${ra.late.toFixed(2)}★</b>late</div><div><b>${pct(share('late',1),0)}</b>of late orders get 1★</div>`;
+}
+function cohort(id){
+  const rows={};D.cohort.forEach(r=>{(rows[r.c]??={n:r.n,v:{}}).v[r.k]=r.r;});
+  let h='<table class="heat"><thead><tr><th class="l">Cohort</th><th class="l">Size</th>'+[1,2,3,4,5,6].map(k=>`<th>M${k}</th>`).join('')+'</tr></thead><tbody>';
+  Object.entries(rows).forEach(([c,o])=>{h+=`<tr><td class="l">${mon(c)}</td><td class="l" style="color:#868A97">${o.n.toLocaleString()}</td>`+[1,2,3,4,5,6].map(k=>{const v=o.v[k];
+    return v==null?'<td class="c" style="background:#F8FAFC"></td>':`<td class="c" title="${mon(c)}, month ${k}: ${pct(v,2)}" style="background:rgba(96,86,255,${Math.min(.08+v/0.008*.6,.75).toFixed(2)})">${pct(v)}</td>`;}).join('')+'</tr>';});
+  document.getElementById(id).innerHTML=h+'</tbody></table>';
+}
+function sellers(){
+  const t=document.getElementById('tbl-sellers');
+  t.innerHTML='<thead><tr><th>Seller</th><th>State</th><th>Top category</th><th class="num">Orders</th><th class="num">GMV</th><th class="num">Avg delivery</th><th class="num">Late rate</th><th class="num">Review</th><th>Tier</th></tr></thead><tbody>'+
+  D.sellers.map(r=>`<tr><td class="sid">${r.seller_id.slice(0,8)}…</td><td>${r.seller_state}</td><td>${nice(r.top_category)}</td><td class="num">${r.orders.toLocaleString()}</td><td class="num">${brl(r.gmv)}</td><td class="num">${r.avg_delivery_days.toFixed(1)} d</td><td class="num ${r.late_rate<.05?'ok':''}">${pct(r.late_rate)}</td><td class="num">${r.avg_review_score.toFixed(2)}★</td><td><span class="chip ${r.seller_tier==='Top'?'top':''}">${r.seller_tier}</span></td></tr>`).join('')+'</tbody>';
+}
+function flow(){
+  const s=document.getElementById('flow');
+  const cols=[
+    {x:20,k:'SOURCE',nodes:['8 Olist CSVs']},
+    {x:250,k:'STAGING',nodes:['stg_olist__orders','stg_olist__order_items','stg_olist__customers','+ 5 more']},
+    {x:500,k:'INTERMEDIATE',nodes:['int_order_items_enriched','int_order_payments_pivoted','int_order_reviews_dedup']},
+    {x:750,k:'MARTS',nodes:['fct_orders · fct_order_items','4 dimensions','5 analytics marts']},
+    {x:990,k:'SERVING',nodes:['Streamlit dashboard']},
+  ];
+  const w=[190,200,210,200,170],pos=[];
+  cols.forEach((c,ci)=>{el('text',{x:c.x,y:18,'font-size':10,'font-weight':500,fill:'#868A97','letter-spacing':'.6'},s,c.k);
+    const gap=48,top=125-(c.nodes.length*gap-12)/2+10;pos[ci]=c.nodes.map((n,i)=>{const y=top+i*gap;return{x:c.x,y,w:w[ci],n};});});
+  pos.slice(0,-1).forEach((col,ci)=>col.forEach(a=>pos[ci+1].forEach(b=>{if(col.length>1&&pos[ci+1].length>1&&Math.abs(col.indexOf(a)-pos[ci+1].indexOf(b))>1)return;
+    const x1=a.x+a.w,y1=a.y+18,x2=b.x,y2=b.y+18,mx=(x1+x2)/2;el('path',{class:'edge',d:`M${x1},${y1}C${mx},${y1} ${mx},${y2} ${x2},${y2}`},s);})));
+  pos.forEach((col,ci)=>col.forEach(p=>{const g=el('g',{class:'node'},s);el('rect',{x:p.x,y:p.y,width:p.w,height:36,rx:8},g);
+    if(ci===4){el('circle',{cx:p.x+18,cy:p.y+18,r:6,fill:'url(#fg)'},g);}
+    el('text',{x:p.x+(ci===4?32:14),y:p.y+22},g,p.n);}));
+  const d=el('defs',{},s),rg=el('radialGradient',{id:'fg'},d);el('stop',{offset:0,'stop-color':'#6056FF'},rg);el('stop',{offset:1,'stop-color':'#3B32F9'},rg);
+}
+
+areaChart('ch-gmv',M.map(r=>r.m),M.map(r=>r.gmv));
+hbars('ch-cat',D.top_cat.map(c=>({name:nice(c.cat),v:c.gmv})),{fmt:brl,hi:1});
+vbars('ch-state',D.late_state.map(r=>({name:r.st,v:r.late_rate,n:r.n})),{fmt:v=>pct(v,0),hiIf:it=>it.v>=.12,h:340});
+grouped('ch-review');
+hbars('ch-rfm',D.rfm.map(r=>({name:r.seg,v:r.customers,rev:r.revenue})),{fmt:v=>v.toLocaleString()+' customers',hi:0,label:it=>`${it.name} <span style="color:#868A97">· ${brl(it.rev)}</span>`});
+{const seg=Object.fromEntries(D.rfm.map(r=>[r.seg,r])),tc=D.rfm.reduce((a,r)=>a+r.customers,0),tr=D.rfm.reduce((a,r)=>a+r.revenue,0);
+ const loyal=seg['Loyal'].customers+seg['Champions'].customers,big=seg['Big Spenders - Recent'].revenue+seg['At Risk - High Value'].revenue;
+ document.getElementById('rfm-callout').innerHTML=`<div><b>${tc.toLocaleString()}</b>customers scored</div><div><b>${pct(loyal/tc)}</b>Loyal or Champions</div><div><b>${pct(big/tr,0)}</b>of revenue from big spenders and at-risk high value</div>`;}
+cohort('ch-cohort');sellers();flow();
+
+/* tabs + nav */
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id==='p-'+b.dataset.p));
+});
+const nav=document.getElementById('nav');addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>8),{passive:true});
+</script>
+</body>
+</html>
