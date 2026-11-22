@@ -5,6 +5,10 @@
 An end-to-end analytics engineering project on the **Olist Brazilian E-commerce** dataset (about 100k orders, 2016–2018).
 Raw CSVs are modeled with **dbt** on **DuckDB** into a tested star schema and business-ready marts, then served in a **Streamlit** dashboard.
 
+### 👉 [Live dashboard](https://dhia-sa-ecommerce-analytics.streamlit.app/)
+
+<sub>Hosted free on Streamlit Community Cloud. If it has been idle, the first load takes about 30 seconds to wake up.</sub>
+
 ![Dashboard overview](docs/images/dashboard_overview.jpg)
 
 **At a glance:** 22 dbt models · 66 data tests (all passing) · full build in about 10 seconds on a laptop · no cloud warehouse needed.
@@ -88,6 +92,20 @@ streamlit run dashboard/app.py          # dashboard
 > **Tip:** to use CSVs that are already somewhere else without copying them, override the path:
 > `dbt build --vars "{raw_data_path: 'C:/Users/you/Downloads/archive'}"`
 
+## Hosted dashboard
+
+The live app runs on Streamlit Community Cloud straight from this repo (`dashboard/app.py`).
+The cloud has no raw data, so the app reads a 4.5 MB snapshot of the six tables it needs, `dashboard/data/dashboard.duckdb`. Locally, it prefers the full `ecommerce.duckdb` when that file exists.
+After changing the models, refresh the snapshot and push:
+
+```bash
+dbt build
+python scripts/export_dashboard_db.py
+git add dashboard/data/dashboard.duckdb && git commit -m "Refresh dashboard snapshot" && git push
+```
+
+`dashboard/requirements.txt` pins `duckdb` to the version that wrote the snapshot. Upgrade both together.
+
 ## CI
 
 GitHub Actions (`.github/workflows/dbt_build.yml`) runs on every push and pull request. It installs the dbt packages, lints the SQL with sqlfluff and compiles every model.
@@ -98,7 +116,10 @@ If `KAGGLE_USERNAME` and `KAGGLE_KEY` are set as repository secrets, it also dow
 ```
 ├── .github/workflows/dbt_build.yml
 ├── analyses/                 ad-hoc SQL
-├── dashboard/app.py          Streamlit app
+├── dashboard/
+│   ├── app.py                Streamlit app
+│   ├── data/dashboard.duckdb snapshot for the hosted app
+│   └── requirements.txt      hosted-app dependencies (pinned)
 ├── data/raw/                 Olist CSVs (gitignored)
 ├── macros/                   generate_schema_name override
 ├── models/
