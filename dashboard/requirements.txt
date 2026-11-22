@@ -1,0 +1,7 @@
+# Dependencies for the hosted dashboard only (Streamlit Community Cloud reads this
+# file because it sits next to app.py). duckdb is pinned to the version that wrote
+# data/dashboard.duckdb, since DuckDB files are tied to the library version.
+duckdb==2.0.1
+streamlit==1.67.0
+plotly==7.1.0
+pandas==3.1.1

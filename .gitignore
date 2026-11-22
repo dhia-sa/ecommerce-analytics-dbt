@@ -2,6 +2,7 @@
 data/raw/*
 !data/raw/.gitkeep
 *.duckdb
+!dashboard/data/dashboard.duckdb
 *.duckdb.wal
 
 # dbt

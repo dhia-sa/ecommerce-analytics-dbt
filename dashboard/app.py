@@ -3,6 +3,10 @@ Streamlit dashboard on top of the dbt marts.
 
 Run from the project root after `dbt build`:
     streamlit run dashboard/app.py
+
+Uses the full dbt database (ecommerce.duckdb) when it exists. Otherwise, as on
+Streamlit Community Cloud, it falls back to the small snapshot in
+dashboard/data/dashboard.duckdb (made by scripts/export_dashboard_db.py).
 """
 from pathlib import Path
 
@@ -10,7 +14,9 @@ import duckdb
 import plotly.express as px
 import streamlit as st
 
-DB_PATH = Path(__file__).resolve().parents[1] / "ecommerce.duckdb"
+FULL_DB = Path(__file__).resolve().parents[1] / "ecommerce.duckdb"
+SNAPSHOT_DB = Path(__file__).resolve().parent / "data" / "dashboard.duckdb"
+DB_PATH = FULL_DB if FULL_DB.exists() else SNAPSHOT_DB
 
 st.set_page_config(page_title="Olist E-commerce Analytics", layout="wide")
 
