@@ -1,0 +1,61 @@
+version: 2
+
+models:
+  - name: mart_monthly_sales
+    description: >
+      Monthly GMV, orders, AOV and customers by product category.
+      Excludes canceled/unavailable orders. Limited to the analysis window vars.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: ['order_month', 'product_category']
+    columns:
+      - name: gmv
+        description: Gross merchandise value (sum of item prices, excluding freight).
+
+  - name: mart_delivery_performance
+    description: Delivery speed, late rate and review score impact by month and customer state.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: ['order_month', 'customer_state']
+    columns:
+      - name: late_rate
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 1
+
+  - name: mart_customer_rfm
+    description: Recency, frequency and monetary scores with a named segment per customer.
+    columns:
+      - name: customer_unique_id
+        data_tests: [unique, not_null]
+      - name: rfm_segment
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Champions', 'Loyal', 'Big Spenders - Recent', 'New / Promising',
+                         'Needs Attention', 'At Risk - High Value', 'Hibernating']
+
+  - name: mart_cohort_retention
+    description: Share of each monthly cohort that orders again N months after their first order.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: ['cohort_month', 'months_since_first']
+    columns:
+      - name: retention_rate
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 1
+
+  - name: mart_seller_performance
+    description: One row per active seller with revenue, delivery and review performance.
+    columns:
+      - name: seller_id
+        data_tests: [unique, not_null]

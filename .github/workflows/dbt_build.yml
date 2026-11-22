@@ -1,0 +1,56 @@
+name: dbt build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  dbt-build:
+    runs-on: ubuntu-latest
+    env:
+      KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+      KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install dbt packages
+        run: dbt deps
+
+      # sqlfluff's dbt templater needs dbt_packages/ (dbt_utils), so lint after deps
+      - name: Lint SQL
+        run: sqlfluff lint models tests
+
+      # Without Kaggle secrets the data can't be downloaded: still check that every model compiles
+      - name: Compile project (no data)
+        if: env.KAGGLE_USERNAME == ''
+        run: dbt compile
+
+      - name: Download Olist data from Kaggle
+        if: env.KAGGLE_USERNAME != ''
+        run: python scripts/download_data.py
+
+      - name: Build models and run tests
+        if: env.KAGGLE_USERNAME != ''
+        run: dbt build
+
+      - name: Generate docs
+        if: env.KAGGLE_USERNAME != ''
+        run: dbt docs generate
+
+      - name: Upload dbt docs
+        if: env.KAGGLE_USERNAME != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbt-docs
+          path: target/

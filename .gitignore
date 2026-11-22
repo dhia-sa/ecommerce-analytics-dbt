@@ -1,0 +1,20 @@
+# data & database
+data/raw/*
+!data/raw/.gitkeep
+*.duckdb
+*.duckdb.wal
+
+# dbt
+target/
+dbt_packages/
+logs/
+.user.yml
+
+# python
+.venv/
+__pycache__/
+*.pyc
+
+# secrets
+.env
+kaggle.json

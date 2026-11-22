@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: olist
+    description: >
+      Raw Olist Brazilian E-commerce public dataset (Kaggle: olistbr/brazilian-ecommerce).
+      DuckDB reads the CSV files directly from the folder set in var('raw_data_path').
+      Every column is read as VARCHAR and typed explicitly in the staging layer,
+      which keeps zip codes with leading zeros intact.
+    meta:
+      # {name} is replaced by dbt-duckdb with the table name below
+      external_location: >-
+        read_csv('{{ var("raw_data_path") }}/olist_{name}_dataset.csv', header = true, all_varchar = true)
+    tables:
+      - name: orders
+        description: One row per order.
+      - name: order_items
+        description: One row per item in an order.
+      - name: order_payments
+        description: One row per payment method used on an order.
+      - name: order_reviews
+        description: Customer satisfaction reviews.
+      - name: customers
+        description: One row per customer_id (a new customer_id is created for every order).
+      - name: products
+        description: Product catalogue (Portuguese category names).
+      - name: sellers
+        description: Marketplace sellers.
+      - name: category_translation
+        description: Portuguese → English product category names.
+        meta:
+          external_location: >-
+            read_csv('{{ var("raw_data_path") }}/product_category_name_translation.csv', header = true, all_varchar = true)
