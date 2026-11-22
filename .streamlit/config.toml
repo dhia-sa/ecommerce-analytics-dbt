@@ -1,0 +1,26 @@
+# Streamlit theme for the dashboard ("Violet Ledger": white canvas, one indigo accent,
+# Sora headings + Inter body). Streamlit reads this from the repo root, both locally
+# (run from the project root) and on Streamlit Community Cloud.
+
+[theme]
+base = "light"
+primaryColor = "#6056FF"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F3F3F4"
+textColor = "#0D162F"
+linkColor = "#4B40D6"
+borderColor = "#E6E7EA"
+dataframeBorderColor = "#E6E7EA"
+dataframeHeaderBackgroundColor = "#F8FAFC"
+baseRadius = "12px"
+buttonRadius = "full"
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap, system-ui, sans-serif"
+headingFont = "Sora:https://fonts.googleapis.com/css2?family=Sora:wght@400;500&display=swap, Inter, sans-serif"
+headingFontWeights = 400
+chartCategoricalColors = ["#6056FF", "#1A192B", "#C9CBD3", "#0E9384"]
+
+[client]
+toolbarMode = "minimal"
+
+[browser]
+gatherUsageStats = false
