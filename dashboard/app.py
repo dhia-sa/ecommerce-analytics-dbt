@@ -127,7 +127,8 @@ st.html(f"""<style>
   --soft-shadow: rgba(255,255,255,.8) 0 1px 0 0 inset, rgba(13,22,47,.07) 0 2px 8px 0;
   --ease: cubic-bezier(.4,0,.2,1);
 }}
-.block-container {{ max-width: 1300px; padding: 0.5rem 40px 2rem; }}
+/* top padding keeps the nav clear of Streamlit's own toolbar (top-right, also on Community Cloud) */
+.block-container {{ max-width: 1300px; padding: 3rem 40px 2rem; }}
 [data-testid="stHeader"] {{ background: transparent; }}
 .vl, .vl * {{ box-sizing: border-box; }}
 .vl {{ font-family: Inter, system-ui, sans-serif; color: {INK}; }}
@@ -150,12 +151,14 @@ st.html(f"""<style>
 .vl-btn-ghost {{ color: #374151; height: 38px; padding: 8px 16px; border-radius: 6px; }}
 
 /* hero */
-.vl-hero {{ position: relative; isolation: isolate; padding: 48px 0 8px; }}
-.vl-hero::before {{ content: ""; position: absolute; inset: -40px -40px 0; z-index: -1; pointer-events: none; background:
-  radial-gradient(40% 55% at 0% 0%, rgba(138,105,255,.22) 0%, rgba(138,105,255,0) 62%),
-  radial-gradient(38% 50% at 100% 4%, rgba(109,74,255,.20) 0%, rgba(109,74,255,0) 62%),
-  radial-gradient(36% 45% at 96% 100%, rgba(138,105,255,.16) 0%, rgba(138,105,255,0) 60%),
-  radial-gradient(36% 45% at 4% 100%, rgba(199,207,255,.35) 0%, rgba(199,207,255,0) 65%); }}
+.vl-hero {{ padding: 48px 0 8px; }}
+/* Corner washes behind the hero. Painted on the scrolling container (st.html blocks clip their
+   own overflow), sized to the hero band and scrolled with the content (attachment: local). */
+[data-testid="stMain"] {{ background-color: #fff; background-repeat: no-repeat; background-size: 100% 860px; background-attachment: local; background-image:
+  radial-gradient(40% 60% at 0% 0%, rgba(138,105,255,.22) 0%, rgba(138,105,255,0) 62%),
+  radial-gradient(38% 55% at 100% 0%, rgba(109,74,255,.20) 0%, rgba(109,74,255,0) 62%),
+  radial-gradient(30% 22% at 96% 78%, rgba(138,105,255,.14) 0%, rgba(138,105,255,0) 60%),
+  radial-gradient(30% 22% at 4% 78%, rgba(199,207,255,.35) 0%, rgba(199,207,255,0) 65%); }}
 .vl-hero-top {{ display: grid; grid-template-columns: 1.15fr 1fr; gap: 80px; align-items: end; }}
 .vl-eyebrow {{ font: 500 13px/1.4 Inter, sans-serif; color: {MUTED}; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }}
 .vl-eyebrow span {{ width: 6px; height: 6px; border-radius: 50%; background: {TEAL}; }}
@@ -228,7 +231,7 @@ st.html(f"""<style>
   .st-key-view {{ justify-content: flex-start; }}
 }}
 @media (max-width: 640px) {{
-  .block-container {{ padding: 0.5rem 16px 2rem; }}
+  .block-container {{ padding: 3rem 16px 2rem; }}
   .vl h1 {{ font-size: 34px; letter-spacing: -1.4px; }}
   .vl h2 {{ font-size: 28px; letter-spacing: -.6px; }}
   .vl-metrics {{ gap: 12px; }}
@@ -236,7 +239,6 @@ st.html(f"""<style>
   .vl-metric .v {{ font-size: 26px; letter-spacing: -.8px; }}
   .vl-metric .spark {{ margin: 10px -16px 0; width: calc(100% + 32px); }}
   .vl-btn-outline {{ display: none; }}
-  .vl-hero::before {{ inset: -40px -16px 0; }}
   .st-key-view [data-testid="stButtonGroup"] {{ border-radius: 22px; width: 100%; }}
   .st-key-view [data-testid="stButtonGroup"] > div {{ flex-wrap: wrap; overflow: visible; }}
   .st-key-view button {{ white-space: nowrap; padding: 10px 12px !important; }}

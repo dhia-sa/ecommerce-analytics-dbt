@@ -60,7 +60,7 @@ Kaggle CSVs ──► DuckDB (read_csv) ──► dbt
 - **GMV R$ 13.4M** (product value, excluding freight) across about 98k valid orders. Average order value is **R$ 137**.
 - **Late delivery destroys satisfaction:** late orders average **2.3★**, against **4.3★** for on-time orders. About 7% of delivered orders arrive late. Among the larger states the rate is highest in CE, BA and RJ (12–14%); some small northeastern states such as AL and MA reach 17–21%.
 
-![Late delivery rate by state](docs/images/dashboard_delivery.jpg)
+![Delivery and review charts from the dashboard](docs/images/dashboard_delivery.jpg)
 - **Almost no repeat business:** only about **3%** of customers ever order twice, and month-1 cohort retention is under **0.5%**. Growth comes from acquisition, so retention is the biggest opportunity.
 - **Top categories by GMV:** health & beauty, watches & gifts, bed/bath/table, sports & leisure, computers & accessories.
 
